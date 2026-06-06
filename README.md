@@ -41,7 +41,7 @@
         <sub><strong>Scan with your smartphone camera</strong></sub>
       </td>
       <td valign="middle" style="padding: 20px; border: none; font-size: 1.1em;">
-        💎 <a href="YOUR_NETLIFY_LIVE_LINK_HERE" target="_blank"><strong>Click Here to Launch Live Demo</strong></a><br /><br />
+        💎 <a href="https://aurles.netlify.app/" target="_blank"><strong>Click Here to Launch Live Demo</strong></a><br /><br />
         ✨ <strong>Optimized Experience:</strong> Mobile responsive view is tailored gracefully for all iOS and Android smartphone display viewports.
       </td>
     </tr>
