@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auralis — Timeless Luxury Jewelry, Handcrafted</title>
+  <meta name="description"
+    content="Discover handcrafted fine jewelry — rings, necklaces, earrings, bracelets and luxury sets, designed for life's most precious moments." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- Cursor ring -->
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo">AURALIS</a>
+      <nav class="nav-links">
+        <a href="#collections">Collections</a>
+        <a href="#best">Best Sellers</a>
+        <a href="#craft">Craftsmanship</a>
+        <a href="#new">New Arrivals</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-icons">
+        <img src="assets/icons/search.svg" alt="Search" class="icon" id="search-icon" />
+        <img src="assets/icons/heart.svg" alt="Favorites" class="icon" />
+        <div class="cart-wrap">
+          <img src="assets/icons/cart.svg" alt="Cart" class="icon" id="cart-icon" />
+          <span class="cart-badge" id="cart-badge" style="display: none;">0</span>
+        </div>
+        <img src="assets/icons/menu.svg" alt="Menu" class="icon menu-icon" id="menu-icon" />
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu-overlay glass" id="mobile-menu">
+    <div class="mobile-menu-content">
+      <button id="close-menu" class="close-btn" style="position: absolute; top: 1.5rem; right: 1.5rem; font-size: 1.5rem; color: var(--dark-brown);">✕</button>
+      <nav class="mobile-nav-links">
+        <a href="#collections">Collections</a>
+        <a href="#best">Best Sellers</a>
+        <a href="#craft">Craftsmanship</a>
+        <a href="#new">New Arrivals</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="mobile-menu-footer">
+        <p class="muted" style="margin-top: 2rem; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;">Maison Auralis</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WISHLIST DRAWER -->
+  <div class="drawer-overlay" id="wishlist-overlay">
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <h3>Your Wishlist</h3>
+        <button id="close-wishlist" class="close-btn">✕</button>
+      </div>
+      <div class="drawer-body" id="wishlist-body">
+        <p class="empty-msg">Your wishlist is empty.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CART DRAWER -->
+  <div class="drawer-overlay" id="cart-overlay">
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <h3>Your Shopping Cart</h3>
+        <button id="close-cart" class="close-btn">✕</button>
+      </div>
+      <div class="drawer-body" id="cart-body">
+        <p class="empty-msg">Your cart is empty.</p>
+      </div>
+      <div class="drawer-footer">
+        <p class="cart-shipping-note">Complimentary insured shipping included.</p>
+        <div class="total-row">
+          <span>Total</span>
+          <span id="cart-total">$0</span>
+        </div>
+        <button id="checkout-btn" class="btn btn-gold" style="width: 100%;">Secure Checkout</button>
+        <div class="secure-checkout-note">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          <span>100% Secure Encrypted Checkout</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- CHECKOUT MODAL -->
+  <div class="preview-modal" id="checkout-modal" style="z-index: 9500 !important;">
+    <div class="preview-content glass checkout-content">
+      <button id="close-checkout" class="close-btn">✕</button>
+      <div class="checkout-header">
+        <p class="eyebrow gold">Secure</p>
+        <h2>Complete Your Order</h2>
+      </div>
+      <form id="checkout-form" class="checkout-form">
+        <div class="form-group">
+          <label for="checkout-name">Full Name</label>
+          <input type="text" id="checkout-name" required placeholder="Enter your full name" />
+        </div>
+        <div class="form-group">
+          <label for="checkout-email">Email Address</label>
+          <input type="email" id="checkout-email" required placeholder="Enter your email" />
+        </div>
+        <div class="form-group">
+          <label for="checkout-address">Shipping Address</label>
+          <input type="text" id="checkout-address" required placeholder="Enter your full address" />
+        </div>
+        <button type="submit" id="confirm-pay-btn" class="btn btn-gold" style="width: 100%; margin-top: 1rem;">Confirm & Pay</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- CATEGORY MODAL -->
+  <div class="preview-modal" id="category-modal">
+    <div class="category-content glass">
+      <button id="close-category" class="close-btn">✕</button>
+      <div class="category-header">
+        <h2 id="category-modal-title">Category Name</h2>
+        <p class="muted">Discover our exclusive collection.</p>
+        <span class="divider-gold center" style="margin-top:1rem;"></span>
+      </div>
+      <div class="grid grid-3" id="category-grid" style="margin-top: 2rem; gap: 2rem;">
+        <!-- Products will be injected here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- SEARCH MODAL -->
+  <div class="search-modal" id="search-modal">
+    <div class="search-content glass">
+      <button id="close-search" class="close-btn">✕</button>
+      <div class="search-header">
+        <input type="text" id="search-input" class="search-input" placeholder="Search for Rings, Necklaces, Bracelets..." autocomplete="off" />
+      </div>
+      <div class="search-results-area">
+        <p id="search-status" class="muted search-status">Type to start searching...</p>
+        <div class="grid grid-3" id="search-grid" style="gap: 2rem;">
+          <!-- Search results will be injected here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="toast">
+    <span class="toast-icon">✦</span>
+    <p id="toast-msg">Notification message</p>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="sparkle-field" id="sparkles"></div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="eyebrow-row">
+          <span class="divider-gold"></span>
+          <span class="eyebrow">Maison Auralis · Est. 1962</span>
+        </div>
+        <h1 class="hero-title">
+          Timeless Elegance,<br />
+          <span class="italic gold-gradient">Crafted</span> for Every Moment
+        </h1>
+        <p class="hero-sub">
+          Discover handcrafted jewelry designed to celebrate life's most precious memories — sculpted in 18k gold, set
+          with ethically sourced stones.
+        </p>
+        <div class="hero-buttons">
+          <button class="btn btn-gold">Explore Collection</button>
+          <button class="btn btn-outline">Book Consultation</button>
+        </div>
+        <div class="hero-reviews">
+          <span class="stars-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+              <path d="M12 2l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1 3-6z" />
+            </svg><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+              <path d="M12 2l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1 3-6z" />
+            </svg><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+              <path d="M12 2l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1 3-6z" />
+            </svg><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+              <path d="M12 2l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1 3-6z" />
+            </svg><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+              <path d="M12 2l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1 3-6z" />
+            </svg></span>
+          <span>4.9 · 12k reviews</span>
+        </div>
+      </div>
+      <div class="hero-image-wrap">
+        <div class="hero-glow"></div>
+        <div class="hero-image">
+          <img src="assets/images/hero-jewelry.jpg" alt="Diamond necklace on silk" />
+        </div>
+        <div class="hero-floating glass">
+          <div class="hero-floating-inner">
+            <span class="gold-dot">✦</span>
+            <div>
+              <p class="floating-title">Limited Atelier Edition</p>
+              <p class="floating-sub">Only 24 pieces worldwide</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLECTIONS -->
+  <section id="collections" class="section beige-bg">
+    <div class="container">
+      <div class="section-title">
+        <p class="eyebrow gold">Curated</p>
+        <h2>Featured Collections</h2>
+        <p class="muted">Explore each universe of artistry.</p>
+        <span class="divider-gold center"></span>
+      </div>
+      <div class="grid grid-5">
+        <div class="collection-card">
+          <div class="icon-large"><svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.2">
+              <circle cx="12" cy="14" r="6" />
+              <path d="M10 8l2-4 2 4z" />
+            </svg></div>
+          <p class="card-title">Rings</p>
+          <p class="muted-tiny">Discover →</p>
+        </div>
+        <div class="collection-card">
+          <div class="icon-large"><svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.2">
+              <path d="M6 4v2a6 6 0 0 0 12 0V4" />
+              <circle cx="12" cy="12" r="2" />
+            </svg></div>
+          <p class="card-title">Necklaces</p>
+          <p class="muted-tiny">Discover →</p>
+        </div>
+        <div class="collection-card">
+          <div class="icon-large"><svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.2">
+              <circle cx="8" cy="16" r="3" />
+              <circle cx="16" cy="16" r="3" />
+              <path d="M8 13V7a4 4 0 0 1 8 0v6" />
+            </svg></div>
+          <p class="card-title">Earrings</p>
+          <p class="muted-tiny">Discover →</p>
+        </div>
+        <div class="collection-card">
+          <div class="icon-large"><svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.2">
+              <ellipse cx="12" cy="12" rx="8" ry="4" />
+              <path d="M12 8v8" />
+            </svg></div>
+          <p class="card-title">Bracelets</p>
+          <p class="muted-tiny">Discover →</p>
+        </div>
+        <div class="collection-card">
+          <div class="icon-large"><svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.2">
+              <path d="M12 2l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1 3-6z" />
+            </svg></div>
+          <p class="card-title">Luxury Sets</p>
+          <p class="muted-tiny">Discover →</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEST SELLERS -->
+  <section id="best" class="section">
+    <div class="container">
+      <div class="section-title">
+        <p class="eyebrow gold">Most Loved</p>
+        <h2>Best Sellers</h2>
+        <p class="muted">Pieces that have captured hearts around the world.</p>
+        <span class="divider-gold center"></span>
+      </div>
+      <div class="grid grid-4" id="best-grid"></div>
+    </div>
+  </section>
+
+  <!-- CRAFTSMANSHIP -->
+  <section id="craft" class="craft">
+    <div class="container craft-grid">
+      <div class="craft-image-wrap">
+        <div class="craft-image">
+          <img src="assets/images/craftsmanship.jpg" alt="Jeweler crafting a ring" loading="lazy" />
+        </div>
+        <div class="craft-stat glass">
+          <p class="stat-num">60+</p>
+          <p class="stat-label">Years of mastery</p>
+        </div>
+      </div>
+      <div class="craft-text">
+        <p class="eyebrow gold">The Atelier</p>
+        <h2>Three generations of <span class="italic gold-gradient">craftsmanship</span></h2>
+        <p class="craft-desc">
+          Every Auralis piece begins as a sketch in our Parisian atelier and ends as a wearable heirloom. From the first
+          cut of the gem to the final polish, our master artisans honor a tradition refined over six decades.
+        </p>
+        <ul class="craft-list">
+          <li><span class="bullet"></span> Handmade in our Parisian atelier</li>
+          <li><span class="bullet"></span> Conflict-free, ethically sourced gemstones</li>
+          <li><span class="bullet"></span> Solid 18k gold — never plated</li>
+          <li><span class="bullet"></span> Each piece signed and certified</li>
+        </ul>
+        <button class="btn btn-outline gold-text">Discover Our Story</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW ARRIVALS -->
+  <section id="new" class="section">
+    <div class="container">
+      <div class="arrivals-header">
+        <div>
+          <p class="eyebrow gold">Just Arrived</p>
+          <h2>New Arrivals</h2>
+        </div>
+        <div class="slider-controls">
+          <button id="prevBtn" class="round-btn">‹</button>
+          <button id="nextBtn" class="round-btn">›</button>
+        </div>
+      </div>
+      <div class="arrivals-track" id="arrivals-track"></div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="section beige-bg">
+    <div class="container">
+      <div class="section-title">
+        <p class="eyebrow gold">Promise</p>
+        <h2>Why Choose Auralis</h2>
+        <span class="divider-gold center"></span>
+      </div>
+      <div class="grid grid-5">
+        <div class="feature-card">
+          <div class="feature-icon"><svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.5">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg></div>
+          <p class="card-title">Certified Materials</p>
+          <p class="muted-tiny">Conflict-free diamonds and ethically sourced gold.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.5">
+              <polygon points="12 2 2 7 12 22 22 7 12 2" />
+              <polyline points="2 7 12 7 22 7" />
+              <polyline points="12 22 12 7" />
+            </svg></div>
+          <p class="card-title">Handcrafted Excellence</p>
+          <p class="muted-tiny">Each piece sculpted by master artisans.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.5">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+              <line x1="1" y1="10" x2="23" y2="10" />
+            </svg></div>
+          <p class="card-title">Secure Payments</p>
+          <p class="muted-tiny">Encrypted checkout with global trust.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.5">
+              <rect x="1" y="3" width="15" height="13" />
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+              <circle cx="5.5" cy="18.5" r="2.5" />
+              <circle cx="18.5" cy="18.5" r="2.5" />
+            </svg></div>
+          <p class="card-title">Worldwide Shipping</p>
+          <p class="muted-tiny">Insured delivery to your doorstep.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.5">
+              <path d="M12 2l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1 3-6z" />
+            </svg></div>
+          <p class="card-title">Lifetime Support</p>
+          <p class="muted-tiny">Cleaning, resizing and care, always.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <p class="eyebrow gold">Devoted Clients</p>
+        <h2>Whispers of Elegance</h2>
+        <span class="divider-gold center"></span>
+      </div>
+      <div class="grid grid-3" id="testimonial-grid"></div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <p class="eyebrow gold">@auralis.maison</p>
+        <h2>Follow Our World</h2>
+        <p class="muted">A glimpse into the Auralis universe.</p>
+        <span class="divider-gold center"></span>
+      </div>
+      <div class="instagram-grid" id="ig-grid"></div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter-wrap">
+    <div class="newsletter">
+      <div class="sparkle-field" id="sparkles2"></div>
+      <p class="eyebrow gold">Exclusive</p>
+      <h2>Join Our Exclusive Circle</h2>
+      <p class="newsletter-sub">Private previews, atelier stories, and first access to limited editions.</p>
+      <form class="newsletter-form glass" onsubmit="event.preventDefault();">
+        <input type="email" required placeholder="Your email" />
+        <button type="submit" class="btn btn-gold">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact" class="footer">
+    <div class="container footer-grid">
+      <div>
+        <p class="logo">AURALIS</p>
+        <p class="footer-desc">Fine handcrafted jewelry from our Parisian atelier — since 1962.</p>
+        <div class="social-row">
+          <a href="#" class="social">IG</a>
+          <a href="#" class="social">FB</a>
+          <a href="#" class="social">TW</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-title">Shop</p>
+        <ul>
+          <li><a href="#">Rings</a></li>
+          <li><a href="#">Necklaces</a></li>
+          <li><a href="#">Earrings</a></li>
+          <li><a href="#">Bracelets</a></li>
+          <li><a href="#">Sets</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Collections</p>
+        <ul>
+          <li><a href="#">New Arrivals</a></li>
+          <li><a href="#">Best Sellers</a></li>
+          <li><a href="#">Atelier Edition</a></li>
+          <li><a href="#">Bridal</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">About</p>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Craftsmanship</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Contact</p>
+        <ul>
+          <li><a href="#">Boutiques</a></li>
+          <li><a href="#">Consultation</a></li>
+          <li><a href="#">Care Guide</a></li>
+          <li><a href="#">Returns</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Auralis Maison · All rights reserved</p>
+      <p>Crafted with devotion in Paris</p>
+    </div>
+  </footer>
+
+  <!-- PRODUCT PREVIEW MODAL (Moved to bottom to guarantee absolute top layer) -->
+  <div class="preview-modal" id="preview-modal" style="z-index: 9999 !important;">
+    <div class="preview-content glass">
+      <button id="close-preview" class="close-btn">✕</button>
+      <div class="preview-grid">
+        <div class="preview-img-wrap">
+          <img src="" id="preview-img" alt="Product Preview" />
+        </div>
+        <div class="preview-details">
+          <p class="eyebrow gold">Auralis Collection</p>
+          <h2 id="preview-title">Product Title</h2>
+          <p class="price" id="preview-price">$0</p>
+          <p class="preview-desc">Exquisitely handcrafted in our Parisian atelier. This piece features conflict-free
+            diamonds set in solid 18k gold, designed to be a timeless heirloom for generations.</p>
+          <ul class="preview-features">
+            <li>✦ Solid 18k Gold</li>
+            <li>✦ Ethically sourced stones</li>
+            <li>✦ Hand-polished finish</li>
+          </ul>
+          <button class="btn btn-gold preview-add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    // 1. Import Firebase App and Analytics (Your original imports)
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
+
+    // 2. ADDED: Import Firestore database functions
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBVaxkZFebXOdwNcTMVsCuBSwbsY_VHeb4",
+      authDomain: "jewelry-store-de76c.firebaseapp.com",
+      projectId: "jewelry-store-de76c",
+      storageBucket: "jewelry-store-de76c.firebasestorage.app",
+      messagingSenderId: "1017420191969",
+      appId: "1:1017420191969:web:bb3c8b2dbda8ef4764bfa0",
+      measurementId: "G-6Z8LE5RK2Y"
+    };
+
+    // Initialize Firebase & Analytics
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
+    // 3. Initialize Cloud Firestore and get a reference to the database
+    const db = getFirestore(app);
+    console.log("Firebase and Firestore are fully linked! 💎");
+
+    // Expose a checkout function to the global scope for script.js to use
+    window.processCheckout = async function(cartItems, totalAmount, customerInfo) {
+      try {
+        const orderRef = await addDoc(collection(db, "orders"), {
+          customer: customerInfo,
+          items: cartItems,
+          total: totalAmount,
+          timestamp: new Date().toISOString()
+        });
+        console.log("Order saved with ID: ", orderRef.id);
+        return true;
+      } catch (error) {
+        console.error("Error saving order: ", error);
+        return false;
+      }
+    };
+
+  </script>
+  <script src="script.js"></script>
+</body>
+
+</html>
